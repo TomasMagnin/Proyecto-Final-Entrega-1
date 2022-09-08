@@ -36,36 +36,55 @@ cars.push(new Products({brand: "TOYOTA", model: "HILLUX", year: 2019, price: 450
 cars.push(new Products({brand: "VOLKSWAGEN", model: "GOLF", year: 2022, price: 30000, stock: 12, sold: false}));
 
 
+
+// Creamos la variable que contine la Opcion.
+
 let option = "";
 
+// Creamos el Menu de Opcion
+
 while(option !== "ESC"){
-    option = prompt("# Ingrese 1 para Mostrar los productos \n\ # Ingrese 2 para Ingresar un nuevo productos \n # Ingrese 3 para Buscar un Producto \n")
-}
- if(option !== ""){
-    switch(option){
-        case "1":
-            let i = 0;
-            cars.forEach(item => {
-                i = i +  showCars();
-            });
-            alert(i);
-            break;
+    option = prompt("# Ingrese 1 para Mostrar los productos.\n # Ingrese 2 para Ingresar un nuevo productos.\n # Ingrese 3 para Buscar un Producto.\n")
 
-        case "2":
-           let brandAdd = prompt("Ingrese la Marca");
-           let modelAdd = prompt("Ingrese el Modelo");
-           let yearAdd  = prompt("Ingrese Año");
-           let priceAdd = prompt("Ingrese Precio")
-           let stockAdd = prompt("Ingrese la cantidad de Stock")
-           cars.push(new Products({brand: "AUDI", model: "A3", year: 2015, price: 25000, stock: 4, sold: false}));
-
+    if(option !== ""){
+        switch(option){
+            case "1":
+                let i = 0;
+                cars.forEach(item => {
+                    i = i +  item.showCars() + `\n`;
+                });
+                alert(i);
+                break;
+            
+            case "2":
+                let brandAdd = prompt("Ingrese la Marca");
+                let modelAdd = prompt("Ingrese el Modelo");
+                let yearAdd  = prompt("Ingrese Año");
+                let priceAdd = prompt("Ingrese Precio")
+                let stockAdd = prompt("Ingrese la cantidad de Stock")
+                cars.push(new Products({brand: `${brandAdd}`, model: `${modelAdd}`, year: `${yearAdd}`, price: `${priceAdd}`, stock: `${stockAdd}`, sold: false}));
+                break;
+            
+            case "3":
+                let fidbrd = prompt("Ingrese la Marca a Buscar");
+                fidbrd = fidbrd.toUpperCase();                
+                const result = cars.find(car => car.brand === fidbrd)
+                let result2 = []
+                result2 = result.showCars();
+                alert(result2);
+                break;
+            
         
+            default:
+                alert("Opcion No Valida");
+                break;        
+            
+        }
+    }
+    else{
+        alert("Ingrese una opcion Valida! - Ingrese ESC si desea Salir!");
     }
 }
-
-
-
-
 
 
 
